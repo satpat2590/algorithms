@@ -4,7 +4,6 @@ Providing a list of all learned/implemented algorithms as well as analysis/runti
 
 
 
-
 # BST
 
 Included a folder with implementations of max-heap and min-heap. In order to build the files, you need to run these commands from the home directory. 
@@ -46,3 +45,49 @@ make main
 
 ./bin/MAIN
 ```
+
+# Concepts
+Pointers
+Pass by value / reference
+Bit manipulation
+Math
+Searching and sorting
+Graph traversals and shortest path
+
+# Data structures
+Arrays
+Matrix
+Trees (BST, R-B tree)
+Heap (max or min)
+Map
+Set
+List
+Queue
+Deque
+Graph (list, matrix)
+
+# CPP Std lib
+[Std lib](https://en.cppreference.com/w/cpp/standard_library)
+
+# CPP Containers Library
+Array
+Vector
+Deque
+Forward list (singly linked list)
+List (doubly linked list)
+Set
+Map
+Multiset
+Multimap
+Unordered set
+Unordered map
+Unordered multiset
+Unordered multimap
+Stack
+Queue
+Priority queue
+CPP 23
+  Flat set
+  Flat map
+  Flat multiset
+  Flat multimap
