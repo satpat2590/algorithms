@@ -1,4 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <utility>
+#include <iostream> 
+#include <map> 
+
+
 
 void print_bits(int n) {
   for (int i = 0; i < sizeof(n) * 8; ++i) {
@@ -6,6 +12,15 @@ void print_bits(int n) {
     n <<= 1;
   }
   printf("\n");
+}
+
+std::pair<int, int> swap_values(int &a, int &b) {
+  printf("\na: %d\nb: %d\n", a, b);
+  a ^= b;
+  b ^= a;
+  a ^= b;
+  printf("\na: %d\nb: %d\n", a, b);
+  return std::make_pair(a, b); 
 }
 
 bool is_power_of_2(int n) {
