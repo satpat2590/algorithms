@@ -7,3 +7,7 @@ all:
 
 run: 
 	./bin/MAIN
+
+
+clean: 
+	rm rf bin/*
