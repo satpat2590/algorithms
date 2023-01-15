@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <vector>
 #include <iostream>
-#include <queue>
 #include <map>
 #include <deque>
 
@@ -37,6 +36,8 @@ class Graph {
             int value;
             int color; 
             int index;
+            int d;
+            int f;
             Node(int val) : index(val) {}
         };
 
@@ -51,12 +52,10 @@ class Graph {
             
         }
 
-
         void createEdge(int node1, int node2, int weight) {
             edgeSet.insert(std::pair<std::pair<int, int>, int>(std::make_pair(node1, node2), weight)); 
             // return std::make_pair(node1, node2);
         }
-
 
         std::vector<int> bellmanFord() {
             vertexSet[0].value = 0;
@@ -113,21 +112,12 @@ class Graph {
 
         }
 
-
         void printEdgeSet() {
             for (auto it = this->edgeSet.begin(); it != this->edgeSet.end(); it++) 
                 printf("\n\nNode 1: %d\n\n Node 2: %d\n\n Weight: %d\n\n", it->first.first, it->first.second, it->second); 
         }
 
-
-
-
-
-
-
-
-
-        void BFS() {
+        void DFS() {
             std::queue<int> grayPeople;
             std::vector<int> blackPeople; 
 
@@ -148,6 +138,5 @@ class Graph {
             }
 
         }
-
 
 };
