@@ -5,9 +5,5 @@ all:
 	mv MAIN bin/
 
 
-run: 
-	./bin/MAIN
-
-
 clean: 
-	rm rf bin/*
+	rm -rf bin/*

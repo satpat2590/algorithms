@@ -61,50 +61,53 @@ class Graph {
         std::vector<int> bellmanFord() {
             vertexSet[0].value = 0;
             vertexSet[0].color = 2;
-            std::deque<Node> vals;
-            vals.push_back(vertexSet[0]);
+            std::deque<int> vals;
+            vals.push_back(vertexSet[0].index);
             
             for (int i = 1; i < this->vnum; i++) {
                 this->vertexSet[i].value = 10000; 
-                this->vertexSet[i].color = 0;
+                this->vertexSet[i].color = 0; 
             }
-
-            int count = 0;
-
 
             while (vals.size() != 0) {
                 for (auto it = edgeSet.begin(); it != edgeSet.end(); it++) {
-                    if (vals.front().index == it->first.first) {
+                    if (vals.front() == it->first.first) {
                         checkWeight(it, vertexSet[it->first.first], vertexSet[it->first.second]);
                         if (vertexSet[it->first.second].color != 3)
-                            vals.push_back(vertexSet[it->first.second]);
+                            vals.push_back(vertexSet[it->first.second].index);
+                    } else {
+                        std::cout << "Searching vals.front() : " << vals.front() << "...\n" << std::endl; 
                     }
-
-                    std::cout << "vals.front() : " << vals.front().index << "\n" << std::endl; 
                 }
-                vertexSet[vals.front().index].color = 3;
+                vertexSet[vals.front()].color = 3;
+                printf("\n\nSize of the queue: %lu\nNODE %d HAS BECOME COMPLETE: HERE'S PROOF: COLOR = %d\n\n", vals.size(), vals.front(), vertexSet[vals.front()].color);
                 vals.pop_front();
             }
+
+            printf("\n--------------------------Final Results------------------------------\n\n");
+
+            for (auto it2 = vertexSet.begin(); it2 != vertexSet.end(); it2++) 
+                printf("\nNode %d final distance from entry is: %d\n\n", it2->index, it2->value);
+            
             return {0, 2, 3};
         }
 
         bool checkWeight(std::map<std::pair<int,int>, int>::iterator it, Node &node1, Node &node2) {
-            printf("\nNode 1: %d\nNode 2: %d\nWeight: %d\nNode %d val: %d\nNode %d val: %d\n\n\n\n", it->first.first, it->first.second, it->second, node1.index, node1.value, node2.index, node2.value);
-            
+            printf("\nNode %d Value: %d\nNode %d Value: %d\nWeight: %d\n\n\n", it->first.first, node1.value, it->first.second, node2.value, it->second);
             // if parent node is undiscovered, return false. 
             if (node1.color == 0) 
                 return false;
-            else    
+            else if (node2.color < 3)
                 node2.color = 2; // set child node to gray. 
 
-            
-                
             // if child node value is less than parent node + weight, then false. 
             if (node2.value > (node1.value + it->second)) {
                 node2.value = node1.value + it->second;
-                std::cout << node2.index << ":" << node2.value << std::endl;
+                std::cout << "\nSuccessful value change!\nNode: " << node2.index << "\nValue: " << node2.value << std::endl;
+                std::cout << "\n--------------------------------------------------------\n" << std::endl;
                 return true;
             }
+            std::cout << "\n--------------------------------------------------------\n" << std::endl;
 
             return false;
 
